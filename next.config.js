@@ -1,4 +1,3 @@
-const withSass = require("@zeit/next-sass");
 const withLess = require("@zeit/next-less");
 const withCSS = require("@zeit/next-css");
 
@@ -11,16 +10,14 @@ if (typeof require !== "undefined") {
 
 module.exports = withCSS({
   cssModules: true,
-  distDir: 'build',
+  distDir: "build",
   cssLoaderOptions: {
     importLoaders: 1,
     localIdentName: "[local]___[hash:base64:5]",
   },
-  ...withLess(
-    withSass({
-      lessLoaderOptions: {
-        javascriptEnabled: true,
-      },
-    })
-  ),
+  ...withLess({
+    lessLoaderOptions: {
+      javascriptEnabled: true,
+    },
+  }),
 });
