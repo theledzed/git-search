@@ -1,0 +1,51 @@
+.userInformationContainer {
+    border-radius: 1.5em;
+  background: #ffffff;
+  box-shadow: 9px 9px 18px #d4d4d4, -9px -9px 18px #ffffff;
+  width: 20%;
+  height: 30em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2em;
+}
+
+.userHeaderColum {
+  display: flex;
+  flex-direction: column;
+}
+
+.userHeaderRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userHeaderName {
+  font-size: 20px;
+  margin-right: 1em;
+  font-weight: 600;
+}
+
+.userHeaderUser {
+  font-size: 20px;
+}
+
+.userHeaderType span {
+  margin-top: 1em;
+  font-size: 20px;
+}
+
+.userHeaderType {
+  font-size: 20px;
+}
+
+.itemTitleInformation{
+  font-size: 20px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.itemInformation{
+  padding-left: 2em;
+}

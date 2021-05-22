@@ -1,0 +1,21 @@
+.card {
+  box-shadow: 24px 24px 48px #c2c2c2, -24px -24px 48px #ffffff;
+  border-radius: 2em;
+  padding: 0em 2em;
+  margin: 1em;
+  height: 15em;
+  width: 100%;
+}
+
+.containerRepository {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.labelDescription{
+  font-size: 16px;
+  font-weight: 600;
+  margin: .5em;
+}

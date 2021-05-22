@@ -1,0 +1,42 @@
+.userHeaderContainer {
+  border-radius: 1.5em;
+  background: #ffffff;
+  box-shadow: 9px 9px 18px #d4d4d4, -9px -9px 18px #ffffff;
+  width: 30%;
+  height: 10em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2em;
+  margin-left: 5.5em;
+}
+
+.userHeaderColum {
+  display: flex;
+  flex-direction: column;
+}
+
+.userHeaderRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userHeaderName {
+  font-size: 20px;
+  margin-right: 1em;
+  font-weight: 600;
+}
+
+.userHeaderUser {
+  font-size: 20px;
+}
+
+.userHeaderType span {
+  margin-top: 1em;
+  font-size: 20px;
+}
+
+.userHeaderType {
+  font-size: 20px;
+}

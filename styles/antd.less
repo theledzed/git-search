@@ -13,3 +13,37 @@
 @border-radius-base: 4px; // major border radius
 @border-color-base: #d9d9d9; // major border color
 @box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // major shadow for layers
+
+.ant-layout-header {
+  background-color: #fff;
+}
+
+.ant-layout-content {
+  min-height: 66em;
+  background-color: #fff;
+}
+
+.ant-card-actions {
+  border-radius: 4em;
+}
+
+
+.ant-card-body::after {
+  display: none;
+}
+
+.ant-card-body:before {
+  display: none;
+}
+
+
+.ant-card-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.ant-card-meta{
+  max-width: 80%;
+}

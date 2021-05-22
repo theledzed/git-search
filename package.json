@@ -8,6 +8,10 @@
     "export": "next export",
     "start": "next start"
   },
+  " browser ": {
+    "child_process ": false,
+    "net ": false
+  },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",

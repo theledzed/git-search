@@ -1,0 +1,47 @@
+.userSocialContainer {
+    border-radius: 1.5em;
+  background: #ffffff;
+  box-shadow: 9px 9px 18px #d4d4d4, -9px -9px 18px #ffffff;
+  width: 100%;
+  height: 10em;
+  display: flex;
+  flex-direction: flex;
+  justify-content: space-around;
+  padding: 2em;
+  margin-left: 2em;
+}
+
+.userSocialColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.itemTitleSocial {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 600;
+}
+
+
+.itemSocial{
+  font-size: 30px;
+}
+
+.userSocialColumContainer{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.userSocialRedirectionsContainer{
+  padding: 2em;
+  margin-left: 2em;
+  margin-top: 2em;
+}
+
+.redirectionsLabel{
+  color: #676767;
+  font-size: 30px;
+  font-weight: 600;
+}

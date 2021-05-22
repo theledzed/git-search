@@ -1,0 +1,30 @@
+.containerHeaderInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+
+.userInfoContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.containerUserInfo{
+  margin-top: 2em;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.userAvatar{
+  width:15em;
+  margin-left: 5em;
+  height: 15em;
+}

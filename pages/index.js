@@ -1,25 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Input, Radio } from "antd";
-import axios from "axios";
-import RepositoriesContext from "../utils/context/UserContext";
-import UserContext from "../utils/context/UserContext";
+import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 
 const { Search } = Input;
 
 export default function Home() {
-  const [user, setUser] = useState({});
-  const [repositories, setRepositories] = useState({});
+  const router = useRouter();
   const [optionSearch, setOptionSearch] = useState();
 
-
   const searchBy = async (value) => {
-    if (optionSearch == "user") {
-      const response = await axios.get(`https://api.github.com/users/${value}`);
-    } else {
-      const response = await axios.get(
-        `https://api.github.com/search/repositories?q=${value}`
-      );
+    if (optionSearch === "user") {
+      router.push({ pathname: "/users", query: { value, optionSearch } });
+    }else{
+      router.push({ pathname: "/repositories", query: { value, optionSearch } });
     }
   };
 
