@@ -1,41 +1,41 @@
 import { Card, Avatar, Typography } from "antd";
 const { Paragraph } = Typography;
 import { EditOutlined, EllipsisOutlined, EyeOutlined } from "@ant-design/icons";
-import styles from "../../styles/gsusercard.module.css";
+import styles from "../../styles/gsrepository.module.css";
 
 const { Meta } = Card;
 
-export default function GSUserCard({ repositories }) {
+export default function GSRepositoryCard({ repository }) {
   return (
     <Card className={styles.card}>
       <Meta
-        avatar={<Avatar src={repositories.owner.avatar_url} />}
-        title={<a href={repositories.html_url}>{repositories.name}</a>}
+        avatar={<Avatar src={repository.owner.avatar_url} />}
+        title={<a href={repository.html_url}>{repository.name}</a>}
         description={
           <div>
             <p>
               <span className={styles.labelDescription}>Description:</span>
-              {repositories.description}
+              {repository.description}
             </p>
             <p>
               <span className={styles.labelDescription}>Language:</span>
-              {repositories.language}
+              {repository.language}
             </p>
             <p>
               <span className={styles.labelDescription}>Forks:</span>
-              {repositories.forks_count}
+              {repository.forks_count}
             </p>
             <p>
               <span className={styles.labelDescription}>
                 <EyeOutlined />:
               </span>
-              {repositories.watchers_count}
+              {repository.watchers_count}
             </p>
           </div>
         }
       />
       <div>
-        <Paragraph  copyable={{ text: `git clone ${repositories.clone_url}` }}>
+        <Paragraph  copyable={{ text: `git clone ${repository.clone_url}` }}>
           Clone repository
         </Paragraph>
       </div>

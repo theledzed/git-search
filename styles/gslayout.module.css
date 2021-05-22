@@ -11,8 +11,9 @@
 }
 .logo {
   float: right;
-  margin: 1em 0 1em 1em;
+  margin: 1em 5em 1em 1em;
   float: left;
   width: 120px;
   height: 31px;
+  cursor: pointer;
 }

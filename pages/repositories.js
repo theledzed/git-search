@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Input, Avatar } from "antd";
 import GSLayout from "../components/GSLayout";
-import GSUserCard from "../components/User/GSUserCard";
+import GSRepositoryCard from "../components/Repository/GSRepositoryCard";
 import { useRouter } from "next/router";
 import axios from "axios";
 import styles from "../styles/repositories.module.css";
@@ -27,14 +27,12 @@ export default function Repositories() {
 
   return (
     <GSLayout>
-      <div className={styles.cardsContainer} >
-
-      {repositories.length
-        ? repositories.map((repository) => {
-            console.log("------repository------", repository);
-            return <GSUserCard repositories={repository} />;
-          })
-        : null}
+      <div className={styles.cardsContainer}>
+        {repositories.length
+          ? repositories.map((repositoryItem) => {
+              return <GSRepositoryCard repository={repositoryItem} />;
+            })
+          : null}
       </div>
     </GSLayout>
   );
