@@ -7,13 +7,24 @@ const { Search } = Input;
 
 export default function Home() {
   const router = useRouter();
-  const [optionSearch, setOptionSearch] = useState();
+  const [optionSearch, setOptionSearch] = useState('repositories');
+
+  const copies = {
+    user: "Usuario",
+    repositories: "Repositorios",
+    search: "Buscar",
+    searchByUser: "Buscar por nombre de usuario",
+    searchByRepositories: "Buscar por nombre de repositorio",
+  };
 
   const searchBy = async (value) => {
     if (optionSearch === "user") {
       router.push({ pathname: "/users", query: { value, optionSearch } });
-    }else{
-      router.push({ pathname: "/repositories", query: { value, optionSearch } });
+    } else {
+      router.push({
+        pathname: "/repositories",
+        query: { value, optionSearch },
+      });
     }
   };
 
@@ -21,24 +32,28 @@ export default function Home() {
     <div className={styles.container}>
       <img className={styles.logo} src="/logo.png" />
       <Search
-        placeholder="input search text"
+        placeholder={
+          optionSearch == "repositories"
+            ? copies.searchByRepositories
+            : copies.searchByUser
+        }
         allowClear
         className={styles.searchInput}
-        enterButton="Search"
+        enterButton={copies.search}
         size="large"
         onSearch={(value) => {
           searchBy(value);
         }}
       />
       <Radio.Group
-        defaultValue="a"
+        defaultValue="repositories"
         size="large"
         onChange={(event) => {
           setOptionSearch(event.target.value);
         }}
       >
-        <Radio.Button value="user">Users</Radio.Button>
-        <Radio.Button value="repositories">Repositories</Radio.Button>
+        <Radio.Button value="repositories">{copies.repositories}</Radio.Button>
+        <Radio.Button value="user">{copies.user}</Radio.Button>
       </Radio.Group>
     </div>
   );

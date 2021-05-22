@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Input, Avatar } from "antd";
+import { Input, Empty, Pagination } from "antd";
 import GSLayout from "../components/GSLayout";
 import GSRepositoryCard from "../components/Repository/GSRepositoryCard";
 import { useRouter } from "next/router";
@@ -9,30 +9,91 @@ import styles from "../styles/repositories.module.css";
 const { Search } = Input;
 
 export default function Repositories() {
-  const [repositories, setRepositories] = useState({});
   const router = useRouter();
+  const [repositories, setRepositories] = useState({});
+  const [repositorySearched, setRepositorySearched] = useState(
+    router.query.value
+  );
+  const [isEmptyState, setIsEmpyState] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
+  const [perPage, setPerPage] = useState(10);
+  const [numberPage, setNumberPage] = useState(1);
+  const copies = {
+    searchByUser: "Busca un repositorio",
+    search: "Buscar",
+  };
 
   useEffect(() => {
     getGitRepositories();
   }, []);
 
+  useEffect(() => {
+    getGitRepositories();
+  }, [repositorySearched, numberPage, perPage]);
+
   const getGitRepositories = async () => {
-    const { value } = router.query;
-    console.log("value", value);
-    const response = await axios.get(
-      `https://api.github.com/search/repositories?q=${value}`
-    );
-    setRepositories(response.data.items);
+    if (repositorySearched) {
+      setIsEmpyState(false);
+      const response = await axios.get(
+        `https://api.github.com/search/repositories`,
+        {
+          params: {
+            q: repositorySearched,
+            per_page: perPage,
+            page: numberPage,
+          },
+        }
+      );
+      setTotalPages(Math.floor(response.data.total_count / perPage));
+      setRepositories(response.data.items);
+    } else {
+      setIsEmpyState(!repositorySearched);
+    }
   };
 
   return (
-    <GSLayout>
+    <GSLayout
+      onSearch={(value) => {
+        setRepositorySearched(value);
+      }}
+    >
       <div className={styles.cardsContainer}>
-        {repositories.length
-          ? repositories.map((repositoryItem) => {
+        {!isEmptyState && repositories.length ? (
+          <div>
+            {repositories.map((repositoryItem) => {
               return <GSRepositoryCard repository={repositoryItem} />;
-            })
-          : null}
+            })}
+            {console.log("totalPages", totalPages)}
+            <Pagination
+              current={numberPage}
+              defaultCurrent={1}
+              total={totalPages}
+              onChange={(value) => {
+                setNumberPage(value);
+              }}
+              showSizeChanger={false}
+              onShowSizeChange={(pageNumber, perPage) => {
+                setPerPage(perPage);
+              }}
+            />
+          </div>
+        ) : (
+          <div className={styles.emptyRepoContainer}>
+            <Empty
+              description={
+                <Search
+                  placeholder={copies.searchByUser}
+                  allowClear
+                  enterButton={copies.search}
+                  size="large"
+                  onSearch={(value) => {
+                    setRepositorySearched(value);
+                  }}
+                />
+              }
+            ></Empty>
+          </div>
+        )}
       </div>
     </GSLayout>
   );

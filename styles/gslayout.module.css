@@ -2,8 +2,7 @@
   min-height: 60em;
   padding: 24px;
   background: #fff;
-  margin: 2em;
-    border-radius: 1.5em;
+  border-radius: 1.5em;
   height: 60em;
   background: #ffffff;
   width: 100%;
@@ -16,4 +15,26 @@
   width: 120px;
   height: 31px;
   cursor: pointer;
+}
+
+.searchBar {
+  float: right;
+  margin: 1em 0em 1em 1em;
+  width: 20em;
+  height: 31px;
+  cursor: pointer;
+}
+
+
+@media (max-width: 600px) {
+  .siteLayoutContent {
+    margin: 0em;
+    padding: 0em;
+  }
+  .logo {
+    margin: 3em 1em 1em 1em;
+  }
+  .searchBar {
+    margin: 1em 1em 1em 1em;
+  }
 }

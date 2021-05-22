@@ -13,19 +13,19 @@ export default function GSRepositoryCard({ repository }) {
         title={<a href={repository.html_url}>{repository.name}</a>}
         description={
           <div>
-            <p>
+            <p className={styles.containerLabelDescription}>
               <span className={styles.labelDescription}>Description:</span>
               {repository.description}
             </p>
-            <p>
+            <p className={styles.containerLabelDescription}>
               <span className={styles.labelDescription}>Language:</span>
               {repository.language}
             </p>
-            <p>
+            <p className={styles.containerLabelDescription}>
               <span className={styles.labelDescription}>Forks:</span>
               {repository.forks_count}
             </p>
-            <p>
+            <p className={styles.containerLabelDescription}>
               <span className={styles.labelDescription}>
                 <EyeOutlined />:
               </span>
@@ -35,7 +35,7 @@ export default function GSRepositoryCard({ repository }) {
         }
       />
       <div>
-        <Paragraph  copyable={{ text: `git clone ${repository.clone_url}` }}>
+        <Paragraph copyable={{ text: `git clone ${repository.clone_url}` }}>
           Clone repository
         </Paragraph>
       </div>

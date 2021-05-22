@@ -1,5 +1,5 @@
 .userSocialContainer {
-    border-radius: 1.5em;
+  border-radius: 1.5em;
   background: #ffffff;
   box-shadow: 9px 9px 18px #d4d4d4, -9px -9px 18px #ffffff;
   width: 100%;
@@ -23,25 +23,34 @@
   font-weight: 600;
 }
 
-
-.itemSocial{
+.itemSocial {
   font-size: 30px;
 }
 
-.userSocialColumContainer{
+.userSocialColumContainer {
   width: 30%;
   display: flex;
   flex-direction: column;
 }
 
-.userSocialRedirectionsContainer{
+.userSocialRedirectionsContainer {
   padding: 2em;
   margin-left: 2em;
   margin-top: 2em;
 }
 
-.redirectionsLabel{
+.redirectionsLabel {
   color: #676767;
   font-size: 30px;
   font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .userSocialColumContainer {
+    width: 90%;
+    margin: 1.5em;
+  }
+  .userSocialContainer {
+    margin-left: 0em;
+  }
 }

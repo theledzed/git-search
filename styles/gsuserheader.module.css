@@ -28,6 +28,12 @@
   font-weight: 600;
 }
 
+.userHeaderNameSeparator {
+  font-size: 20px;
+  margin-right: 1em;
+  font-weight: 600;
+}
+
 .userHeaderUser {
   font-size: 20px;
 }
@@ -39,4 +45,23 @@
 
 .userHeaderType {
   font-size: 20px;
+}
+
+@media (max-width: 600px) {
+  .userHeaderContainer {
+    padding: 0.5em;
+    margin-left: 0em;
+    width: 93%;
+    margin-top: 2em;
+    justify-content: center;
+  }
+  .userHeaderRow {
+    flex-direction: column;
+  }
+  .userHeaderNameSeparator{
+    display: none;
+  }
+  .userHeaderType {
+    text-align: center;
+  }
 }

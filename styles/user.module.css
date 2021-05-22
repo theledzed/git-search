@@ -28,3 +28,22 @@
   margin-left: 5em;
   height: 15em;
 }
+
+.searchInput {
+  width: 35%;
+  margin: 2em;
+}
+
+
+@media (max-width: 600px) {
+  .containerHeaderInfo {
+    margin-top: 40em;
+    flex-direction: column;
+  }
+  .userAvatar{
+    margin-left: 0em;
+  }
+  .containerUserInfo{
+    flex-direction: column;
+  }
+}

@@ -21,10 +21,17 @@ export default function GSUserSocial({ user }) {
       <div className={styles.userSocialRedirectionsContainer}>
         <p>
           {" "}
-          <a href={user.repos_url} className={styles.redirectionsLabel}>Ver Repositorios</a>
+          <a
+            href={`https://github.com/${user.login}?tab=repositories`}
+            className={styles.redirectionsLabel}
+          >
+            Ver Repositorios
+          </a>
         </p>
         <p>
-          <a href={user.html_url} className={styles.redirectionsLabel}>Ver Perfil</a>
+          <a href={user.html_url} className={styles.redirectionsLabel}>
+            Ver Perfil
+          </a>
         </p>
       </div>
     </div>

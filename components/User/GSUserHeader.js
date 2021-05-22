@@ -7,7 +7,7 @@ export default function GSUserHeader({ user }) {
       <div className={styles.userHeaderColum}>
         <div className={styles.userHeaderRow}>
           <span className={styles.userHeaderName}>Nombre: {user.name}</span>
-          <span className={styles.userHeaderName}>|</span>
+          <span className={styles.userHeaderNameSeparator}>|</span>
           <span className={styles.userHeaderUser}>@{user.login}</span>{" "}
         </div>
         <span className={styles.userHeaderType}>

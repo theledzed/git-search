@@ -1,5 +1,5 @@
 .userInformationContainer {
-    border-radius: 1.5em;
+  border-radius: 1.5em;
   background: #ffffff;
   box-shadow: 9px 9px 18px #d4d4d4, -9px -9px 18px #ffffff;
   width: 20%;
@@ -40,12 +40,21 @@
   font-size: 20px;
 }
 
-.itemTitleInformation{
+.itemTitleInformation {
   font-size: 20px;
   margin: 0;
   font-weight: 600;
 }
 
-.itemInformation{
+.itemInformation {
   padding-left: 2em;
+}
+
+@media (max-width: 600px) {
+  .userInformationContainer {
+    border-radius: 1.5em;
+    width: 90%;
+    margin: 1.5em;
+    padding: 1.5em;
+  }
 }

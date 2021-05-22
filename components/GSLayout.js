@@ -1,23 +1,75 @@
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu, Input } from "antd";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import styles from "../styles/gslayout.module.css";
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
+const { Search } = Input;
 
-export default function GSLayout({ children }) {
+export default function GSLayout({ children, onSearch }) {
+  const [menuItemSelected, setMenuItemSelected] = useState([""]);
   const router = useRouter();
+  const copies = {
+    user: "Usuario",
+    repositories: "Repositorios",
+    searchByUser: "Busca por usuarios",
+    searchRepositories: "Busca por repositorios",
+  };
+  useEffect(() => {
+    switch (router.route) {
+      case "/users":
+        setMenuItemSelected(["1"]);
+        break;
+      case "/repositories":
+        setMenuItemSelected(["2"]);
+        break;
+      case "/":
+        setMenuItemSelected([""]);
+        break;
+    }
+  }, []);
+
   return (
     <Layout className="layout">
       <Header>
-        <img src="logo.png" onClick={()=>{
-          router.push('/')
-        }} className={styles.logo} />
-        <Menu theme="light" mode="horizontal">
-          <Menu.Item key="1">Users</Menu.Item>
-          <Menu.Item key="2">Repositories</Menu.Item>
+        <img
+          src="logo.png"
+          onClick={() => {
+            router.push("/");
+          }}
+          className={styles.logo}
+        />
+        <Menu
+          onClick={(menuItem) => {
+            if (menuItem.key == "1") {
+              router.push("/users");
+            } else {
+              router.push("/repositories");
+            }
+          }}
+          theme="light"
+          on
+          selectedKeys={menuItemSelected}
+          mode="horizontal"
+        >
+          <Menu.Item key="1">{copies.user}</Menu.Item>
+          <Menu.Item key="2">{copies.repositories}</Menu.Item>
         </Menu>
+        <div className={styles.searchBar}>
+          <Search
+            placeholder={
+              router.route == "/users"
+                ? copies.searchByUser
+                : copies.searchRepositories
+            }
+            onSearch={(value) => {
+              onSearch(value);
+            }}
+            enterButton
+          />
+        </div>
       </Header>
-      <Content style={{ padding: "0 50px" }}>
+      <Content>
         <div className={styles.siteLayoutContent}>{children}</div>
       </Content>
     </Layout>
