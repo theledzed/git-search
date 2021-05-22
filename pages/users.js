@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Input, Avatar, Empty } from "antd";
+import { Input, Avatar, Empty, Result } from "antd";
 import GSLayout from "../components/GSLayout";
 import { useRouter } from "next/router";
 import GSUserHeader from "../components/User/GSUserHeader";
@@ -12,12 +12,14 @@ const { Search } = Input;
 
 export default function Users() {
   const router = useRouter();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [userName, setUserName] = useState(router.query.value);
   const [isEmptyState, setIsEmpyState] = useState(false);
+  const [isError, setIsError] = useState(false);
   const copies = {
     searchByUser: "Busca un usuario",
     search: "Buscar",
+    notFound: 'No se encontro ningun usuario con ese username'
   };
 
   useEffect(() => {
@@ -30,16 +32,23 @@ export default function Users() {
   }, [userName]);
 
   const getGitUser = async () => {
-    if (userName) {
-      setIsEmpyState(false);
-      const response = await axios.get(
-        `https://api.github.com/users/${userName}`
-      );
-      setUser(response.data);
-    } else {
-      setIsEmpyState(!userName);
+    try {
+      setIsError(false);
+      if (userName) {
+        setIsEmpyState(false);
+        const response = await axios.get(
+          `https://api.github.com/users/${userName}`
+        );
+        setUser(response.data);
+      } else {
+        setIsEmpyState(!userName);
+      }
+    } catch (error) {
+      setIsError(true);
     }
   };
+
+  console.log("Result", user);
 
   return (
     <GSLayout
@@ -47,6 +56,16 @@ export default function Users() {
         setUserName(value);
       }}
     >
+      {isError ? (
+        <div className={styles.userInfoContainer}>
+          <Result
+            status="404"
+            title="404"
+            subTitle={copies.notFound}
+            // extra={<Button type="primary">Back Home</Button>}
+          />
+        </div>
+      ) : null}
       {isEmptyState ? (
         <div className={styles.userInfoContainer}>
           <Empty
@@ -63,7 +82,7 @@ export default function Users() {
             }
           ></Empty>
         </div>
-      ) : (
+      ) : user ? (
         <div className={styles.userInfoContainer}>
           <div className={styles.containerHeaderInfo}>
             <Avatar className={styles.userAvatar} src={user.avatar_url} />
@@ -74,7 +93,7 @@ export default function Users() {
             <GSUserSocial user={user} />
           </div>
         </div>
-      )}
+      ) : null}
     </GSLayout>
   );
 }
