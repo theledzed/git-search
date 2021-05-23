@@ -1,99 +1,98 @@
 import React, { useEffect, useState } from "react";
-import { Input, Avatar, Empty, Result } from "antd";
+import { Input, Empty, Pagination } from "antd";
 import GSLayout from "../components/GSLayout";
+import GSUserCard from "../components/User/GSUserCard";
 import { useRouter } from "next/router";
-import GSUserHeader from "../components/User/GSUserHeader";
-import GSUserInformation from "../components/User/GSUserInformation";
-import GSUserSocial from "../components/User/GSUserSocial";
 import axios from "axios";
-import styles from "../styles/user.module.css";
+import styles from "../styles/userdetail.module.css";
 
 const { Search } = Input;
 
-export default function Users() {
+export default function Repositories() {
   const router = useRouter();
-  const [user, setUser] = useState(null);
-  const [userName, setUserName] = useState(router.query.value);
+  const [user, setUser] = useState({});
+  const [userSearched, setUserSearched] = useState(
+    router.query.value
+  );
   const [isEmptyState, setIsEmpyState] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
+  const [perPage, setPerPage] = useState(9);
+  const [numberPage, setNumberPage] = useState(1);
   const copies = {
-    searchByUser: "Busca un usuario",
+    searchByUser: "Busca por usuario",
     search: "Buscar",
-    notFound: 'No se encontro ningun usuario con ese username'
   };
 
   useEffect(() => {
-    console.log(router);
-    getGitUser();
+    getGitRepositories();
   }, []);
 
   useEffect(() => {
-    getGitUser();
-  }, [userName]);
+    getGitRepositories();
+  }, [userSearched, numberPage, perPage]);
 
-  const getGitUser = async () => {
-    try {
-      setIsError(false);
-      if (userName) {
-        setIsEmpyState(false);
-        const response = await axios.get(
-          `https://api.github.com/users/${userName}`
-        );
-        setUser(response.data);
-      } else {
-        setIsEmpyState(!userName);
-      }
-    } catch (error) {
-      setIsError(true);
+  const getGitRepositories = async () => {
+    if (userSearched) {
+      setIsEmpyState(false);
+      const response = await axios.get(`https://api.github.com/search/users`, {
+        params: {
+          q: userSearched,
+          per_page: perPage,
+          page: numberPage,
+        },
+      });
+      setTotalPages(Math.floor(response.data.total_count / perPage));
+      setUser(response.data.items);
+    } else {
+      setIsEmpyState(!userSearched);
     }
   };
-
-  console.log("Result", user);
 
   return (
     <GSLayout
       onSearch={(value) => {
-        setUserName(value);
+        setUserSearched(value);
       }}
     >
-      {isError ? (
-        <div className={styles.userInfoContainer}>
-          <Result
-            status="404"
-            title="404"
-            subTitle={copies.notFound}
-            // extra={<Button type="primary">Back Home</Button>}
-          />
-        </div>
-      ) : null}
-      {isEmptyState ? (
-        <div className={styles.userInfoContainer}>
-          <Empty
-            description={
-              <Search
-                placeholder={copies.searchByUser}
-                allowClear
-                enterButton={copies.search}
-                size="large"
-                onSearch={(value) => {
-                  setUserName(value);
+      <div className={styles.cardsContainer}>
+        {!isEmptyState && user.length ? (
+          <div className={styles.wrapContainer}>
+            {user.map((repositoryItem, index) => {
+              return <GSUserCard key={index} user={repositoryItem} />;
+            })}
+            {totalPages > 0 ? (
+              <Pagination
+                current={numberPage}
+                defaultCurrent={1}
+                total={totalPages}
+                onChange={(value) => {
+                  setNumberPage(value);
+                }}
+                showSizeChanger={false}
+                onShowSizeChange={(pageNumber, perPage) => {
+                  setPerPage(perPage);
                 }}
               />
-            }
-          ></Empty>
-        </div>
-      ) : user ? (
-        <div className={styles.userInfoContainer}>
-          <div className={styles.containerHeaderInfo}>
-            <Avatar className={styles.userAvatar} src={user.avatar_url} />
-            <GSUserHeader user={user} />
+            ) : null}
           </div>
-          <div className={styles.containerUserInfo}>
-            <GSUserInformation user={user} />
-            <GSUserSocial user={user} />
+        ) : (
+          <div className={styles.emptyRepoContainer}>
+            <Empty
+              description={
+                <Search
+                  placeholder={copies.searchByUser}
+                  allowClear
+                  enterButton={copies.search}
+                  size="large"
+                  onSearch={(value) => {
+                    setUserSearched(value);
+                  }}
+                />
+              }
+            ></Empty>
           </div>
-        </div>
-      ) : null}
+        )}
+      </div>
     </GSLayout>
   );
 }

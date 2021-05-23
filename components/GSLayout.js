@@ -20,6 +20,9 @@ export default function GSLayout({ children, onSearch }) {
       case "/users":
         setMenuItemSelected(["1"]);
         break;
+      case "/userDetail":
+        setMenuItemSelected(["1"]);
+        break;
       case "/repositories":
         setMenuItemSelected(["2"]);
         break;
@@ -58,7 +61,7 @@ export default function GSLayout({ children, onSearch }) {
         <div className={styles.searchBar}>
           <Search
             placeholder={
-              router.route == "/users"
+              router.route == "/users" || router.route == "/userDetail"
                 ? copies.searchByUser
                 : copies.searchRepositories
             }

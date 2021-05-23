@@ -63,7 +63,6 @@ export default function Repositories() {
             {repositories.map((repositoryItem) => {
               return <GSRepositoryCard repository={repositoryItem} />;
             })}
-            {console.log("totalPages", totalPages)}
             <Pagination
               current={numberPage}
               defaultCurrent={1}

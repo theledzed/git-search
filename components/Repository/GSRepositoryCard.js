@@ -1,11 +1,18 @@
 import { Card, Avatar, Typography } from "antd";
-const { Paragraph } = Typography;
-import { EditOutlined, EllipsisOutlined, EyeOutlined } from "@ant-design/icons";
-import styles from "../../styles/gsrepository.module.css";
+import { EyeOutlined } from "@ant-design/icons";
+import styles from "../../styles/gsrepositorycard.module.css";
 
+const { Paragraph } = Typography;
 const { Meta } = Card;
 
 export default function GSRepositoryCard({ repository }) {
+  const copies = {
+    description: "Descripción:",
+    language: "Lenguaje:",
+    forks: "Forks:",
+    clone: "Clonar el repositorio",
+  };
+
   return (
     <Card className={styles.card}>
       <Meta
@@ -14,15 +21,17 @@ export default function GSRepositoryCard({ repository }) {
         description={
           <div>
             <p className={styles.containerLabelDescription}>
-              <span className={styles.labelDescription}>Description:</span>
+              <span className={styles.labelDescription}>
+                {copies.description}
+              </span>
               {repository.description}
             </p>
             <p className={styles.containerLabelDescription}>
-              <span className={styles.labelDescription}>Language:</span>
+              <span className={styles.labelDescription}>{copies.language}</span>
               {repository.language}
             </p>
             <p className={styles.containerLabelDescription}>
-              <span className={styles.labelDescription}>Forks:</span>
+              <span className={styles.labelDescription}>{copies.forks}</span>
               {repository.forks_count}
             </p>
             <p className={styles.containerLabelDescription}>
@@ -36,7 +45,7 @@ export default function GSRepositoryCard({ repository }) {
       />
       <div>
         <Paragraph copyable={{ text: `git clone ${repository.clone_url}` }}>
-          Clone repository
+          {copies.clone}
         </Paragraph>
       </div>
     </Card>

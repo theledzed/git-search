@@ -2,17 +2,24 @@ import { Tag } from "antd";
 import styles from "../../styles/gsusersocial.module.css";
 
 export default function GSUserSocial({ user }) {
+  const copies = {
+    followers: "Seguidores:",
+    following: "Siguiendo:",
+    viewRepos: "Ver Repositorios",
+    viewProfile: "Ver Perfil",
+  };
+
   return (
     <div className={styles.userSocialColumContainer}>
       <div className={styles.userSocialContainer}>
         <div className={styles.userSocialColumn}>
-          <p className={styles.itemTitleSocial}>👥 Followers:</p>
+          <p className={styles.itemTitleSocial}>👥 {copies.followers}</p>
           <p className={styles.itemSocial}>
             {user.followers ? user.followers : "---"}
           </p>
         </div>
         <div className={styles.userSocialColumn}>
-          <p className={styles.itemTitleSocial}>👀 Following:</p>
+          <p className={styles.itemTitleSocial}>👀 {copies.following}</p>
           <p className={styles.itemSocial}>
             {user.company ? user.company : "---"}
           </p>
@@ -25,12 +32,12 @@ export default function GSUserSocial({ user }) {
             href={`https://github.com/${user.login}?tab=repositories`}
             className={styles.redirectionsLabel}
           >
-            Ver Repositorios
+            {copies.viewRepos}
           </a>
         </p>
         <p>
           <a href={user.html_url} className={styles.redirectionsLabel}>
-            Ver Perfil
+            {copies.viewProfile}
           </a>
         </p>
       </div>

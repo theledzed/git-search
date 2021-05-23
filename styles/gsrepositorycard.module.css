@@ -1,0 +1,40 @@
+.card {
+  box-shadow: 24px 24px 48px #c2c2c2, -24px -24px 48px #ffffff;
+  border-radius: 2em;
+  padding: 0em 2em;
+  margin: 2em 0em;
+  min-height: 15em;
+  width: 100%;
+  height: fit-content;
+}
+
+.containerRepository {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.labelDescription {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0.5em;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 0em 1em;
+    margin: 1.5em;
+    height: fit-content;
+    min-height: 40em;
+    width: 90%;
+  }
+  .containerLabelDescription {
+    display: flex;
+    flex-direction: column;
+  }
+  .labelDescription{
+    font-size: 25px;
+    margin: 0em;
+  }
+}
