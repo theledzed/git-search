@@ -64,6 +64,7 @@ export default function Repositories() {
               return <GSRepositoryCard repository={repositoryItem} />;
             })}
             <Pagination
+              responsive
               current={numberPage}
               defaultCurrent={1}
               total={totalPages}

@@ -19,7 +19,7 @@ export default function GSUserCard({ user }) {
           <a
             onClick={() => {
               router.push({
-                pathname: "/userDetail",
+                pathname: "/user",
                 query: { value: user.login },
               });
             }}

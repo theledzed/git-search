@@ -10,7 +10,7 @@ import styles from "../styles/user.module.css";
 
 const { Search } = Input;
 
-export default function UserDetail() {
+export default function User() {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [userName, setUserName] = useState(router.query.value);

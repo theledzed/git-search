@@ -11,15 +11,13 @@ const { Search } = Input;
 export default function Repositories() {
   const router = useRouter();
   const [user, setUser] = useState({});
-  const [userSearched, setUserSearched] = useState(
-    router.query.value
-  );
+  const [userSearched, setUserSearched] = useState(router.query.value);
   const [isEmptyState, setIsEmpyState] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [perPage, setPerPage] = useState(9);
   const [numberPage, setNumberPage] = useState(1);
   const copies = {
-    searchByUser: "Busca por usuario",
+    searchByUser: "Busca por usuarios",
     search: "Buscar",
   };
 
@@ -62,6 +60,7 @@ export default function Repositories() {
             })}
             {totalPages > 0 ? (
               <Pagination
+                responsive
                 current={numberPage}
                 defaultCurrent={1}
                 total={totalPages}

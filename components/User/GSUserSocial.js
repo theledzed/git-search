@@ -10,7 +10,7 @@ export default function GSUserSocial({ user }) {
   };
 
   return (
-    <div className={styles.userSocialColumContainer}>
+    <div className={styles.userSocialColumnContainer}>
       <div className={styles.userSocialContainer}>
         <div className={styles.userSocialColumn}>
           <p className={styles.itemTitleSocial}>👥 {copies.followers}</p>

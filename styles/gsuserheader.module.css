@@ -11,7 +11,7 @@
   margin-left: 5.5em;
 }
 
-.userHeaderColum {
+.userHeaderColumn {
   display: flex;
   flex-direction: column;
 }

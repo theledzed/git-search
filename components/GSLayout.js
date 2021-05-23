@@ -10,7 +10,7 @@ export default function GSLayout({ children, onSearch }) {
   const [menuItemSelected, setMenuItemSelected] = useState([""]);
   const router = useRouter();
   const copies = {
-    user: "Usuario",
+    users: "Usuarios",
     repositories: "Repositorios",
     searchByUser: "Busca por usuarios",
     searchRepositories: "Busca por repositorios",
@@ -20,7 +20,7 @@ export default function GSLayout({ children, onSearch }) {
       case "/users":
         setMenuItemSelected(["1"]);
         break;
-      case "/userDetail":
+      case "/user":
         setMenuItemSelected(["1"]);
         break;
       case "/repositories":
@@ -55,13 +55,13 @@ export default function GSLayout({ children, onSearch }) {
           selectedKeys={menuItemSelected}
           mode="horizontal"
         >
-          <Menu.Item key="1">{copies.user}</Menu.Item>
+          <Menu.Item key="1">{copies.users}</Menu.Item>
           <Menu.Item key="2">{copies.repositories}</Menu.Item>
         </Menu>
         <div className={styles.searchBar}>
           <Search
             placeholder={
-              router.route == "/users" || router.route == "/userDetail"
+              router.route == "/users" || router.route == "/user"
                 ? copies.searchByUser
                 : copies.searchRepositories
             }

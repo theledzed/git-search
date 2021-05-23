@@ -9,7 +9,7 @@ export default function GSUserHeader({ user }) {
 
   return (
     <div className={styles.userHeaderContainer}>
-      <div className={styles.userHeaderColum}>
+      <div className={styles.userHeaderColumn}>
         <div className={styles.userHeaderRow}>
           <span className={styles.userHeaderName}>{copies.name} {user.name}</span>
           <span className={styles.userHeaderNameSeparator}>|</span>

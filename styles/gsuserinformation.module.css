@@ -10,7 +10,7 @@
   padding: 2em;
 }
 
-.userHeaderColum {
+.userHeaderColumn {
   display: flex;
   flex-direction: column;
 }
