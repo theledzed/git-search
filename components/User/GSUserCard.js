@@ -1,5 +1,6 @@
 import { Card, Avatar } from "antd";
 import { useRouter } from "next/router";
+import styles from "../../styles/usercard.module.css";
 
 const { Meta } = Card;
 
